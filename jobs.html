@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JavaJam Coffee House - Jobs</title>
+    <link rel="stylesheet" href="Assets/style.css">
+    <script type="text/javascript" src="formvalidation.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header></header>
+
+    <div id="leftcolumn">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="musics.html">Music</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="rightcolumn">
+        <h2>Jobs at JavaJam</h2>
+
+        <div class="content">
+            <p>Want to work at JavaJam? Fill out the form below to start your application. Required fields are marked with an asterisk *.</p>
+
+            <form id="jobForm" method="post" action="Assets/show_post.php">
+                <p>
+                    <label for="myName">*Name:</label>
+                    <input type="text" name="myName" id="myName">
+                </p>
+
+                <p>
+                    <label for="myEmail">*E-mail:</label>
+                    <input type="text" name="myEmail" id="myEmail">
+                </p>
+
+                <p>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" name="startDate" id="startDate">
+                </p>
+
+                <p>
+                    <label for="myExperience" style="vertical-align: top;">*Experience:</label>
+                    <textarea name="myExperience" id="myExperience" rows="4" cols="40"></textarea>
+                </p>
+
+                <p>
+                    <br>
+                    <input type="reset" value="Clear"><br>
+                    <input type="submit" value="Apply Now">
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <em>Copyright &copy; 2014 JavaJam Coffee House</em><br>
+        <a href="mailto:bryan@ang.com">bryan@ang.com</a>
+    </footer>
+</div>
+</body>
+</html>

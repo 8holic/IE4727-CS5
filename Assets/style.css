@@ -1,0 +1,107 @@
+body {font-family:Verdana, Arial, sans-serif;
+      color:#5b5349;
+      background-color: #e1deaa;
+}
+#wrapper { background-color: #ddd0b5; 
+
+           width: 80%;
+		   margin: auto;
+           min-width:800px;
+} 
+/* DO NOT COLOR*/
+#leftcolumn { float: left;
+	          width: 150px;
+} 
+
+#rightcolumn { margin-left: 155px;
+               background-color: #F3F3DD;
+
+			   padding: 5px 5px;
+} 
+header { background-color: #c9b290;
+
+        font-size: 150%; 
+        padding: 10px 10px 10px 155px;
+		background-image: url(title.png); 
+		background-repeat: no-repeat;
+        background-size:70% 70%;
+		height: 230px;
+        background-position: center;
+}
+
+
+
+h2 { color: #3c150f; 
+    padding-left: 20px;
+     font-family: arial, sans-serif;
+}
+.content {padding: 0px 20px 20px 20px;
+         align-items: center;
+
+} 
+#floatleft { margin: 0px 30px 0px 0px;
+             float: left;
+}
+
+footer {font-size:70%;
+         text-align: center;
+		 clear: right;
+         padding-bottom:20px;
+         background-color: #c9b290;
+}
+nav ul { list-style-type: none; 
+         padding: 0px ;
+        text-align:center;
+        }
+
+nav a { text-decoration: none; 
+        padding: 10px;
+        font-weight: bold; 
+        text-align:center;
+    
+    }
+
+a:link{color:#765747}
+a:visited{color:#b67f2d}
+/*For Menu*/
+
+table {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    text-align: center;
+    width: 30%;
+}
+
+tr:nth-of-type(odd) {
+    background-color: #DCCFB4;
+}
+
+/* For the Job*/
+form {
+    display: table;
+}
+
+form p {
+    display: table-row;
+}
+
+label {
+    display: table-cell;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+
+input, textarea {
+    display: table-cell;
+    margin-bottom: 10px;
+}
