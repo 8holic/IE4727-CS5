@@ -15,6 +15,6 @@ insert into coffeprice values ( 'Cafe_au_Lait_double',
 
 insert into coffeprice values ( 'Iced_Cappuccino_single', 
                                       '4.75' );
-insert into coffeprice values ( 'Iced_Cappuccino_single', 
+insert into coffeprice values ( 'Iced_Cappuccino_double', 
                                       '5.75     ' );
                                       
