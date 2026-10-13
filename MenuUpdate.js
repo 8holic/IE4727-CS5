@@ -24,7 +24,7 @@ function Cal_Java(event){
 
     var Total_Java_Price = 2*JavaNode.value;
 
-    document.getElementById("Price_Java").value = parseFloat(Total_Java_Price).toFixed(0);
+    document.getElementById("Price_Java").value = parseFloat(Total_Java_Price).toFixed(2);
 
     Cal_total();
     
@@ -70,7 +70,7 @@ function Cal_Cafe(event)
         Total_Cafe_Price = CafeNode1.value * CafeNode3.value;
 
         document.getElementById("Price_Cafe").value =
-            parseFloat(Total_Cafe_Price).toFixed(0);
+            parseFloat(Total_Cafe_Price).toFixed(2);
     }
 
     // Double shot selected
@@ -79,7 +79,7 @@ function Cal_Cafe(event)
         Total_Cafe_Price = CafeNode2.value * CafeNode3.value;
 
         document.getElementById("Price_Cafe").value =
-            parseFloat(Total_Cafe_Price).toFixed(0);
+            parseFloat(Total_Cafe_Price).toFixed(2);
     }
 
     Cal_total();
@@ -127,7 +127,7 @@ function Cal_Cap(event)
         Total_Cap_Price = CapNode1.value * CapNode3.value;
 
         document.getElementById("Price_Cap").value =
-            parseFloat(Total_Cap_Price).toFixed(0);
+            parseFloat(Total_Cap_Price).toFixed(2);
     }
 
     // Double shot selected
@@ -136,7 +136,7 @@ function Cal_Cap(event)
         Total_Cap_Price = CapNode2.value * CapNode3.value;
 
         document.getElementById("Price_Cap").value =
-            parseFloat(Total_Cap_Price).toFixed(0);
+            parseFloat(Total_Cap_Price).toFixed(2);
     }
 
     Cal_total();
@@ -162,5 +162,5 @@ function Cal_total()
     var TotalPrice = JavaPrice + CafePrice + CapPrice;
 
     document.getElementById("TotalPrice").value =
-        TotalPrice.toFixed(0);
+        TotalPrice.toFixed(2);
 }
