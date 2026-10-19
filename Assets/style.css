@@ -107,7 +107,7 @@ input, textarea {
     margin-bottom: 10px;
 }
 
-/* CS5 enhancements: apply only to menu/admin/report widgets. */
+/* For Javier Pages */
 .order-table, .admin-table { width:100%; max-width:1100px; margin:12px auto; border-collapse:separate; border-spacing:0; border:1px solid #dcc7a5; border-radius:9px; overflow:hidden; }
 .order-table th, .order-table td, .admin-table th, .admin-table td { padding:12px; vertical-align:middle; text-align:left; border-bottom:1px solid #e5d8c1; }
 .order-table thead th, .admin-table thead th { background:#927254; color:white; font-size:0.96rem; }

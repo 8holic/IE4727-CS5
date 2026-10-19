@@ -22,21 +22,32 @@
             <form action="pricechange\update.php" method="POST">
                 <table>
                     <tr>
-                        <th><input type="checkbox" name="items[]" value="Just_Java"> Just Java</th>
-                        <td>Endless Cup $<input type="text" name="prices[Just_Java]" value="<?php echo $prices['Just_Java']; ?>" size="6"></td>
-                    </tr>
-                    <tr>
-                        <th><input type="checkbox" name="items[]" value="Cafe_au_Lait"> Cafe au Lait</th>
+                        <th>
+                            <input type="checkbox" name="items[]" value="Just_Java" id="check_just_java"> 
+                            Just Java
+                        </th>
                         <td>
-                            Single $<input type="text" name="prices[Cafe_au_Lait_single]" value="<?php echo $prices['Cafe_au_Lait_single']; ?>" size="6">
-                            Double $<input type="text" name="prices[Cafe_au_Lait_double]" value="<?php echo $prices['Cafe_au_Lait_double']; ?>" size="6">
+                            Endless Cup $<input type="text" name="prices[Just_Java]" id="p1" value="<?php echo $prices['Just_Java']; ?>" size="6" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th><input type="checkbox" name="items[]" value="Iced_Cappuccino"> Iced Cappuccino</th>
+                        <th>
+                            <input type="checkbox" name="items[]" value="Cafe_au_Lait" id="check_cafe"> 
+                            Cafe au Lait
+                        </th>
                         <td>
-                            Single $<input type="text" name="prices[Iced_Cappuccino_sing]" value="<?php echo $prices['Iced_Cappuccino_sing']; ?>" size="6">
-                            Double $<input type="text" name="prices[Iced_Cappuccino_doub]" value="<?php echo $prices['Iced_Cappuccino_doub']; ?>" size="6">
+                            Single $<input type="text" name="prices[Cafe_au_Lait_single]" id="p2" value="<?php echo $prices['Cafe_au_Lait_single']; ?>" size="6" disabled>
+                            Double $<input type="text" name="prices[Cafe_au_Lait_double]" id="p3" value="<?php echo $prices['Cafe_au_Lait_double']; ?>" size="6" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="items[]" value="Iced_Cappuccino" id="check_iced"> 
+                            Iced Cappuccino
+                        </th>
+                        <td>
+                            Single $<input type="text" name="prices[Iced_Cappuccino_sing]" id="p4" value="<?php echo $prices['Iced_Cappuccino_sing']; ?>" size="6" disabled>
+                            Double $<input type="text" name="prices[Iced_Cappuccino_doub]" id="p5" value="<?php echo $prices['Iced_Cappuccino_doub']; ?>" size="6" disabled>
                         </td>
                     </tr>
                 </table>
@@ -45,5 +56,34 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const originalValues = {
+            'p1': document.getElementById('p1').value,
+            'p2': document.getElementById('p2').value,
+            'p3': document.getElementById('p3').value,
+            'p4': document.getElementById('p4').value,
+            'p5': document.getElementById('p5').value
+        };
+
+        function bindCheckbox(checkboxId, ...inputIds) {
+            const checkbox = document.getElementById(checkboxId);
+            checkbox.addEventListener('change', function() {
+                inputIds.forEach(id => {
+                    const input = document.getElementById(id);
+                    input.disabled = !this.checked;
+                    if (!this.checked) {
+                        input.value = originalValues[id];
+                    }
+                });
+            });
+        }
+
+        bindCheckbox('check_just_java', 'p1');
+        bindCheckbox('check_cafe', 'p2', 'p3');
+        bindCheckbox('check_iced', 'p4', 'p5');
+    });
+</script>
 </body>
 </html>
