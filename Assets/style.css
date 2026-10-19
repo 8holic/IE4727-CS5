@@ -106,3 +106,30 @@ input, textarea {
     display: table-cell;
     margin-bottom: 10px;
 }
+
+/* CS5 enhancements: apply only to menu/admin/report widgets. */
+.order-table, .admin-table { width:100%; max-width:1100px; margin:12px auto; border-collapse:separate; border-spacing:0; border:1px solid #dcc7a5; border-radius:9px; overflow:hidden; }
+.order-table th, .order-table td, .admin-table th, .admin-table td { padding:12px; vertical-align:middle; text-align:left; border-bottom:1px solid #e5d8c1; }
+.order-table thead th, .admin-table thead th { background:#927254; color:white; font-size:0.96rem; }
+.order-table tr:nth-of-type(odd), .admin-table tr:nth-of-type(odd) { background:#f0e4d1; }
+.order-table tbody tr:nth-of-type(even), .admin-table tbody tr:nth-of-type(even) { background:#fbf7ea; }
+.order-table tfoot, .admin-table tfoot { background:#d6b993; font-weight:bold; }
+.order-table .total-label { text-align:right; }
+.order-table label:not(.option) { display:block; padding:0; margin-bottom:4px; text-align:left; font-weight:normal; }
+.order-table .option { display:inline-block; padding:4px 8px 4px 0; text-align:left; font-weight:normal; white-space:nowrap; }
+.order-table input[type='number'], .order-table input[readonly], .admin-table input[type='number'] { width:95px; border:1px solid #b5a28d; border-radius:6px; padding:8px; box-sizing:border-box; font:inherit; }
+.order-table input[readonly] { background:#e9e7e1; font-weight:bold; }
+.order-table input[type='radio'] { accent-color:#755039; }
+.admin-table input[type='checkbox'] { accent-color:#755039; transform:scale(1.3); }
+.admin-table input:disabled { background:#eee; opacity:0.55; }
+.coffee-button { background:#765039; color:white; border:0; padding:11px 19px; border-radius:8px; font:inherit; font-weight:bold; cursor:pointer; }
+.coffee-button:hover { background:#593722; }
+.actions { margin:18px 0; text-align:right; }
+.date-form { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:12px 0 20px; }
+.date-form label { display:inline-block; margin:0; padding:0; }
+.date-form input { margin:0; padding:7px; }
+.success-message { background:#e1f0de; color:#28562b; padding:12px; border-radius:5px; }
+.error-message { background:#fce3e3; color:#8e2222; padding:12px; border-radius:5px; }
+.helper-text { font-size:0.85rem; }
+.receipt-content { padding:25px; background:#f3f3dd; }
+@media (max-width:950px) { .order-table, .admin-table { font-size:0.86rem; } .order-table td, .order-table th, .admin-table td, .admin-table th { padding:7px; } }

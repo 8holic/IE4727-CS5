@@ -1,10 +1,9 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "price");
-
-$result = $conn->query("SELECT name, price FROM coffeprice");
+require_once __DIR__ . '/db.php';
+$db = db_connect();
 $prices = [];
-while($row = $result->fetch_assoc()) {
-    $prices[$row['name']] = $row['price'];
+$result = $db->query('SELECT name, price FROM coffeprice');
+while ($row = $result->fetch_assoc()) {
+    $prices[$row['name']] = (float)$row['price'];
 }
-$conn->close();
-?>
+$db->close();

@@ -1,166 +1,57 @@
-var JavaNode = document.getElementById("QtyJava");
+"use strict";
+// Part 4(ii) & Part 5(ii): calculate order totals using CURRENT database prices
+// printed into the HTML by menu.php. The server recalculates independently on checkout.
 
-JavaNode.addEventListener("change", Cal_Java, false);
+const JavaNode = document.getElementById('QtyJava');
+const CafeNode1 = document.getElementById('Qty_Cafe_Single');
+const CafeNode2 = document.getElementById('Qty_Cafe_Double');
+const CafeNode3 = document.getElementById('QtyCafe');
+const CapNode1 = document.getElementById('Qty_Cap_Single');
+const CapNode2 = document.getElementById('Qty_Cap_Double');
+const CapNode3 = document.getElementById('QtyCap');
 
-
-function Cal_Java(event){
-    var qtyJavaChk = event.currentTarget;
-    
-    var pos = qtyJavaChk.value.search(/^[0-9]*$/);
-
-    if(pos !=0)
-    {
-        alert("You entered("+ qtyJavaChk.value +") is not correct.\n" + "Only NUMBER are allowed.");
-        qtyJavaChk.value = "";
-        document.getElementById("Price_Java").value = "";
-        qtyJavaChk.focus();
-
-        return false;
-    
-    
-    }
-
-    //just java cost $2
-
-    var Total_Java_Price = 2*JavaNode.value;
-
-    document.getElementById("Price_Java").value = parseFloat(Total_Java_Price).toFixed(2);
-
-    Cal_total();
-    
+// A blank quantity means "not ordered". Otherwise only whole numbers 0...999.
+function quantityOf(node) {
+    const raw = node.value.trim();
+    const valid = raw === '' || (/^\d+$/.test(raw) && Number(raw) <= 999);
+    node.setCustomValidity(valid ? '' : 'Enter a whole-number quantity from 0 to 999.');
+    return valid ? (raw === '' ? 0 : Number(raw)) : NaN;
 }
 
-
-// cafe au lait
-
-
-var CafeNode1 = document.getElementById("Qty_Cafe_Single");
-var CafeNode2 = document.getElementById("Qty_Cafe_Double");
-var CafeNode3 = document.getElementById("QtyCafe");
-
-
-CafeNode1.addEventListener("change", Cal_Cafe, false);
-CafeNode2.addEventListener("change", Cal_Cafe, false);
-CafeNode3.addEventListener("change", Cal_Cafe, false);
-
-function Cal_Cafe(event)
-{
-    var qtyCafeChk = CafeNode3;
-
-    // Check that quantity contains numbers only
-    var pos = qtyCafeChk.value.search(/^[0-9]*$/);
-
-    if (pos != 0)
-    {
-        alert("You entered (" + qtyCafeChk.value + ") is not correct.\n" +
-              "Only NUMBER are allowed.");
-
-        qtyCafeChk.value = "";
-        document.getElementById("Price_Cafe").value = "";
-        qtyCafeChk.focus();
-
-        return false;
+function subtotal(quantityNode, radioNodes, outputId, fixedPrice = null) {
+    const qty = quantityOf(quantityNode);
+    const chosen = radioNodes ? radioNodes.find(radio => radio.checked) : null;
+    if (radioNodes) {
+        quantityNode.setCustomValidity(qty > 0 && !chosen ? 'Choose Single or Double first.' : quantityNode.validationMessage);
     }
+    const price = fixedPrice !== null ? fixedPrice : (chosen ? Number(chosen.dataset.price) : 0);
+    const amount = qty * price;
+    document.getElementById(outputId).value = Number.isFinite(amount) ? amount.toFixed(2) : '';
+    return Number.isFinite(amount) ? amount : 0;
+}
 
-    var Total_Cafe_Price = 0;
-
-    // Single shot selected
-    if (CafeNode1.checked == true)
-    {
-        Total_Cafe_Price = CafeNode1.value * CafeNode3.value;
-
-        document.getElementById("Price_Cafe").value =
-            parseFloat(Total_Cafe_Price).toFixed(2);
-    }
-
-    // Double shot selected
-    if (CafeNode2.checked == true)
-    {
-        Total_Cafe_Price = CafeNode2.value * CafeNode3.value;
-
-        document.getElementById("Price_Cafe").value =
-            parseFloat(Total_Cafe_Price).toFixed(2);
-    }
-
+function Cal_Java() {
+    subtotal(JavaNode, null, 'Price_Java', Number(JavaNode.dataset.price));
     Cal_total();
 }
-
-
-
-
-// iced cuppucino
-
-
-var CapNode1 = document.getElementById("Qty_Cap_Single");
-var CapNode2 = document.getElementById("Qty_Cap_Double");
-var CapNode3 = document.getElementById("QtyCap");
-
-CapNode1.addEventListener("change", Cal_Cap, false);
-CapNode2.addEventListener("change", Cal_Cap, false);
-CapNode3.addEventListener("change", Cal_Cap, false);
-
-
-function Cal_Cap(event)
-{
-    var qtyCapChk = CapNode3;
-
-    // Check that quantity contains numbers only
-    var pos = qtyCapChk.value.search(/^[0-9]*$/);
-
-    if (pos != 0)
-    {
-        alert("You entered (" + qtyCapChk.value + ") is not correct.\n" +
-              "Only NUMBER are allowed.");
-
-        qtyCapChk.value = "";
-        document.getElementById("Price_Cap").value = "";
-        qtyCapChk.focus();
-
-        return false;
-    }
-
-    var Total_Cap_Price = 0;
-
-    // single shot selected
-    if (CapNode1.checked == true)
-    {
-        Total_Cap_Price = CapNode1.value * CapNode3.value;
-
-        document.getElementById("Price_Cap").value =
-            parseFloat(Total_Cap_Price).toFixed(2);
-    }
-
-    // Double shot selected
-    if (CapNode2.checked == true)
-    {
-        Total_Cap_Price = CapNode2.value * CapNode3.value;
-
-        document.getElementById("Price_Cap").value =
-            parseFloat(Total_Cap_Price).toFixed(2);
-    }
-
+function Cal_Cafe() {
+    subtotal(CafeNode3, [CafeNode1, CafeNode2], 'Price_Cafe');
     Cal_total();
 }
-
-
-
-
-// CALCULATE OVERALL TOTAL
-
-
-function Cal_total()
-{
-    var JavaPrice =
-        parseFloat(document.getElementById("Price_Java").value) || 0;
-
-    var CafePrice =
-        parseFloat(document.getElementById("Price_Cafe").value) || 0;
-
-    var CapPrice =
-        parseFloat(document.getElementById("Price_Cap").value) || 0;
-
-    var TotalPrice = JavaPrice + CafePrice + CapPrice;
-
-    document.getElementById("TotalPrice").value =
-        TotalPrice.toFixed(2);
+function Cal_Cap() {
+    subtotal(CapNode3, [CapNode1, CapNode2], 'Price_Cap');
+    Cal_total();
 }
+function Cal_total() {
+    const java = Number(document.getElementById('Price_Java').value) || 0;
+    const cafe = Number(document.getElementById('Price_Cafe').value) || 0;
+    const cap = Number(document.getElementById('Price_Cap').value) || 0;
+    document.getElementById('TotalPrice').value = (java + cafe + cap).toFixed(2);
+}
+
+JavaNode.addEventListener('input', Cal_Java);
+CafeNode3.addEventListener('input', Cal_Cafe);
+CapNode3.addEventListener('input', Cal_Cap);
+[ CafeNode1, CafeNode2 ].forEach(node => node.addEventListener('change', Cal_Cafe));
+[ CapNode1, CapNode2 ].forEach(node => node.addEventListener('change', Cal_Cap));
+Cal_Java(); Cal_Cafe(); Cal_Cap();
